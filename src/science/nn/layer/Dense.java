@@ -12,14 +12,11 @@ import java.util.List;
 
 public class Dense implements Layer, Shape {
 
-    private final int[] dimension;
-
     private final double bias;
 
     private final List<Neuron> neurons = new ArrayList<>();
 
     public Dense(int size, Function function, double bias) {
-        dimension = new int[]{size};
         this.bias = bias;
 
         for (int i = 0; i < size; i++) {
@@ -77,25 +74,23 @@ public class Dense implements Layer, Shape {
     }
 
     @Override
-    public int[] getDimensions() {
-        return dimension;
+    public int size() {
+        return neurons.size();
     }
 
     @Override
-    public Neuron get(int x, int... y) {
-        checkDimension(y);
+    public Neuron get(int x) {
         return neurons.get(x);
     }
 
     @Override
-    public void set(Neuron neuron, int x, int... y) {
-        checkDimension(y);
+    public void set(Neuron neuron, int x) {
         neurons.set(x, neuron);
     }
 
-    private void checkDimension(int[] y){
-        if (y.length != 0)
-            throw new IndexOutOfBoundsException("dimension is 1 but " + (y.length + 1) + " is accessed");
+    @Override
+    public Neuron[] toArray() {
+        return neurons.toArray(new Neuron[0]);
     }
 
     @Override

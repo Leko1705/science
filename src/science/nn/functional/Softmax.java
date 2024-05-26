@@ -23,8 +23,4 @@ public class Softmax implements Function{
         return (v*subSum)/(Math.pow(this.sum, 2));
     }
 
-    public void add(double value){
-        sum += Math.exp(value);
-        all.add(Math.exp(value));
-    }
 }

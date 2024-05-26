@@ -1,12 +1,10 @@
 package examples;
 
-import science.nn.functional.Swish;
-import science.nn.layer.Dense;
-import science.nn.loss.Loss;
-import science.nn.loss.MSELoss;
-import science.nn.model.Model;
-import science.nn.model.Sequence;
-import science.nn.optim.SGD;
+import science.nn.functional.*;
+import science.nn.layer.*;
+import science.nn.loss.*;
+import science.nn.model.*;
+import science.nn.optim.*;
 
 import java.util.Arrays;
 
@@ -15,16 +13,17 @@ public class NNExample {
 
         Sequence model = new Sequence();
 
-        model.addLayer(new Dense(4, new Swish(), 1.0));
-        model.addLayer(new Dense(5, new Swish(), 1.0));
-        model.addLayer(new Dense(5, new Swish(), 1.0));
-        model.addLayer(new Dense(1, new Swish(), 1.0));
+        model.addLayer(new Dense(4, new Tanh(), 0));
+        model.addLayer(new Dense(4, new Tanh(), 1));
+        model.addLayer(new Dense(4, new Tanh(), 1));
+        model.addLayer(new Dense(4, new Tanh(), 1));
+        model.addLayer(new Dense(3, new Swish(), 1));
 
         double[] input = new double[]{0, 1, 1, 0};
-        double[] target = new double[]{1};
+        double[] target = new double[]{1, 0, 1};
 
         test(model, input, target);
-        train(model, input, target, 100_000);
+        train(model, input, target, 1_000_000);
         test(model, input, target);
     }
 

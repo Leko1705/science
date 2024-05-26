@@ -1,6 +1,7 @@
 package science.nn.model;
 
 import science.nn.graph.Neuron;
+import science.nn.layer.DimensionMismatchException;
 import science.nn.layer.Layer;
 import science.nn.layer.Shape;
 import science.nn.loss.Loss;
@@ -39,11 +40,11 @@ public class Sequence implements Model {
         Iterator<Neuron> neurons = firstShape.iterator();
 
         for (double v : in) {
-            if (!neurons.hasNext()) throw new IllegalArgumentException("input size is too big");
+            if (!neurons.hasNext()) throw new DimensionMismatchException("input size is too big");
             Neuron neuron = neurons.next();
             neuron.setValue(v);
         }
-        if (neurons.hasNext()) throw new IllegalArgumentException("input size is too small");
+        if (neurons.hasNext()) throw new DimensionMismatchException("input size is too small");
     }
 
     @Override
