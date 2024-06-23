@@ -9,6 +9,12 @@ import science.nn.optim.*;
 import java.util.Arrays;
 
 public class NNExample {
+
+
+
+    private static final int TRAINING_ITERATIONS = 1_000_000;
+
+
     public static void main(String[] args) {
 
         Sequence model = new Sequence();
@@ -23,7 +29,7 @@ public class NNExample {
         double[] target = new double[]{1, 0, 1};
 
         test(model, input, target);
-        train(model, input, target, 1_000_000);
+        train(model, input, target, TRAINING_ITERATIONS);
         test(model, input, target);
     }
 

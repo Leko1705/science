@@ -6,6 +6,8 @@ import java.util.Arrays;
 
 public class HopfieldExample {
 
+    private static final int NEURON_AMOUNT = 5;
+
 
     private static final double[][] DATA = {
             {0, 0, -1, 1, 0},
@@ -19,7 +21,7 @@ public class HopfieldExample {
 
 
     public static void main(String[] args) {
-        Hopfield hf = new Hopfield(5);
+        Hopfield hf = new Hopfield(NEURON_AMOUNT);
 
         for (double[] set : DATA) {
             hf.store(set);

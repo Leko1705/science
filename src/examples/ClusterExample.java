@@ -7,8 +7,11 @@ import java.util.Arrays;
 
 public class ClusterExample {
 
+    private static final int DATA_SIZE = 2;
+    private static final int K_CENTROID_AMOUNT = 2;
+
     public static void main(String[] args) {
-        Classifier classifier = new KMeans(2, 2);
+        Classifier classifier = new KMeans(DATA_SIZE, K_CENTROID_AMOUNT);
 
         // add data to classify
         classifier.addData(new double[]{0, 5});
